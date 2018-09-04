@@ -37,4 +37,5 @@ node_modules
 .idea
 
 # Sensitive data
+ecosystem.config.js
 .env
