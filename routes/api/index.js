@@ -1,6 +1,9 @@
-import express from 'express';
 import axios from 'axios';
+import express from 'express';
+import Intl from 'intl';
 import logger from '../../logger';
+
+global.Intl = Intl;
 
 const router = express.Router();
 

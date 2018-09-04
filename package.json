@@ -4,6 +4,7 @@
     "dotenv": "^6.0.0",
     "esm": "^3.0.80",
     "express": "^4.16.3",
+    "intl": "^1.2.5",
     "json-stringify-safe": "^5.0.1",
     "winston": "^3.0.0"
   }
