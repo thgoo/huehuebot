@@ -3,8 +3,6 @@ import express from 'express';
 import Intl from 'intl';
 import logger from '../../logger';
 
-global.Intl = Intl;
-
 const router = express.Router();
 
 const sendMessage = async (chatId, text) => {
@@ -37,16 +35,10 @@ router.post(`/api/handle-messages/${process.env.TELEGRAM_TOKEN}`, async (req, re
     let values = (await getValues()).data;
 
     if (text === '/dolar' || text === '/dolar@TheHUEHUE_bot') {
-      let value = values.results.currencies.USD.buy.toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-      });
+      let value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(values.results.currencies.USD.buy);
       await sendMessage(chat.id, `Dólar: ${value}`);
     } else if (text === '/bitcoin' || text === '/bitcoin@TheHUEHUE_bot') {
-      let value = values.results.bitcoin.mercadobitcoin.last.toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-      });
+      let value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(values.results.bitcoin.mercadobitcoin.last);
       await sendMessage(chat.id, `Bitcoin: ${value}`);
     }
   } catch (err) {
