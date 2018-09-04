@@ -33,13 +33,13 @@ router.post(`/api/handle-messages/${process.env.TELEGRAM_TOKEN}`, async (req, re
 
     let values = (await getValues()).data;
 
-    if (text === '/dolar') {
+    if (text === '/dolar' || text === '/dolar@TheHUEHUE_bot') {
       let value = values.results.currencies.USD.buy.toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL',
       });
       await sendMessage(chat.id, `Dólar: ${value}`);
-    } else if (text === '/bitcoin') {
+    } else if (text === '/bitcoin' || text === '/bitcoin@TheHUEHUE_bot') {
       let value = values.results.bitcoin.mercadobitcoin.last.toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL',
