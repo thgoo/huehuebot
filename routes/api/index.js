@@ -37,7 +37,7 @@ router.post(`/api/handle-messages/${process.env.TELEGRAM_TOKEN}`, async (req, re
     if (text === '/dolar' || text === '/dolar@TheHUEHUE_bot') {
       let value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(values.results.currencies.USD.buy);
       await sendMessage(chat.id, `Dólar: ${value}`);
-    } else if (text === '/bitcoin' || text === '/bitcoin@TheHUEHUE_bot') {
+    } else if (text === '/bitcoin' || text === '/btc' || text === '/bitcoin@TheHUEHUE_bot') {
       let value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(values.results.bitcoin.mercadobitcoin.last);
       await sendMessage(chat.id, `Bitcoin: ${value}`);
     }
