@@ -1,11 +1,9 @@
 import express from 'express';
 import api from './api';
+import web from './web';
 
 const router = express.Router();
 router.use(api);
-
-router.get('/', (req, res) => {
-  res.send({ brbr: 'huehue' });
-});
+router.use(web);
 
 export default router;
