@@ -15,14 +15,19 @@ export default class TelegramController {
 
       // handle bot command
       const values = await Currency.getValues();
-      const currencyFormat = { style: 'currency', currency: 'BRL' };
+      const currencyFormat = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
 
       if (text === '/dolar' || text === '/dolar@TheHUEHUE_bot') {
         const value = new Intl.NumberFormat('pt-BR', currencyFormat).format(values.results.currencies.USD.buy);
-        await Telegram.sendMessage(chat.id, `Dólar: ${value}`);
+        await Telegram.sendMessage(chat.id, `Dólar:\nR$ ${value}`);
       } else if (text === '/bitcoin' || text === '/btc' || text === '/bitcoin@TheHUEHUE_bot') {
-        const value = new Intl.NumberFormat('pt-BR', currencyFormat).format(values.results.bitcoin.mercadobitcoin.last);
-        await Telegram.sendMessage(chat.id, `Bitcoin: ${value}`);
+        const valueBrl = new Intl
+          .NumberFormat('pt-BR', currencyFormat)
+          .format(values.results.bitcoin.mercadobitcoin.last);
+        const valueUsd = new Intl
+          .NumberFormat('pt-BR', currencyFormat)
+          .format(values.results.bitcoin.coinbase.last);
+        await Telegram.sendMessage(chat.id, `Bitcoin:\nR$ ${valueBrl}\nUS$ ${valueUsd}`);
       }
 
       return res.json({ success: true });
