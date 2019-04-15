@@ -2,8 +2,9 @@ import Axios from 'axios';
 
 export default class Currency {
   static async getValues() {
-    const res = await Axios.get('https://api.hgbrasil.com/finance?format=json&key=e7ae921d');
+    const { HGBRASIL_KEY } = process.env;
+    const { data } = await Axios.get(`https://api.hgbrasil.com/finance?format=json&key=${HGBRASIL_KEY}`);
 
-    return res.data;
+    return data;
   }
 }
