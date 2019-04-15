@@ -7,7 +7,6 @@ import Telegram from '../services/telegram';
 export default class TelegramController {
   static async handleMessages(req, res) {
     try {
-      console.log('hahahahahaha');
       // data received from telegram webhooker
       const { chat, text, entities } = req.body.message;
 

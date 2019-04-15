@@ -1,10 +1,6 @@
 import Axios from 'axios';
 
 export default class Telegram {
-  constructor() {
-    console.log('constructor');
-  }
-
   static async sendMessage(chatId, text) {
     const { TELEGRAM_TOKEN } = process.env;
     const ENDPOINT = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
