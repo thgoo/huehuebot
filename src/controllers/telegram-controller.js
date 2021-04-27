@@ -13,21 +13,40 @@ export default class TelegramController {
       // check if it's a bot command
       if (!Telegram.isBotCommand(entities)) return res.json({ success: true });
 
-      // handle bot command
       const values = await Currency.getValues();
       const currencyFormat = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
 
-      if (text === '/dolar' || text === '/dolar@TheHUEHUE_bot') {
-        const value = new Intl.NumberFormat('pt-BR', currencyFormat).format(values.results.currencies.USD.buy);
-        await Telegram.sendMessage(chat.id, `Dólar:\nR$ ${value}`);
-      } else if (text === '/bitcoin' || text === '/btc' || text === '/bitcoin@TheHUEHUE_bot') {
-        const valueBrl = new Intl
-          .NumberFormat('pt-BR', currencyFormat)
-          .format(values.results.bitcoin.mercadobitcoin.last);
-        const valueUsd = new Intl
-          .NumberFormat('pt-BR', currencyFormat)
-          .format(values.results.bitcoin.coinbase.last);
-        await Telegram.sendMessage(chat.id, `Bitcoin:\nR$ ${valueBrl}\nUS$ ${valueUsd}`);
+      // handle bot command
+      switch (text) {
+        case '/bitcoin':
+        case '/btc':
+        case '/bitcoin@TheHUEHUE_bot':
+          const valueBrl = new Intl
+            .NumberFormat('pt-BR', currencyFormat)
+            .format(values.results.bitcoin.mercadobitcoin.last);
+          const valueUsd = new Intl
+            .NumberFormat('pt-BR', currencyFormat)
+            .format(values.results.bitcoin.coinbase.last);
+          await Telegram.sendMessage(chat.id, `Bitcoin:\nR$ ${valueBrl}\nUS$ ${valueUsd}`);
+          break;
+        case '/etherium':
+        case '/eth':
+        case '/etherium@TheHUEHUE_bot':
+          const ethValues = await Currency.getEthBrl();
+          const valueBrl = new Intl
+            .NumberFormat('pt-BR', currencyFormat)
+            .format(ethValues.ticker.last);
+          const valueUsd = new Intl
+            .NumberFormat('pt-BR', currencyFormat)
+            .format(ethValues.results.etherium.coinbase.last / values.results.currencies.USD.buy);
+          await Telegram.sendMessage(chat.id, `Ethereum:\nR$ ${valueBrl}\nUS$ ${valueUsd}`);
+          break;
+        case '/dolar':
+        case '/dolar@TheHUEHUE_bot':
+          const values = await Currency.getValues();
+          const value = new Intl.NumberFormat('pt-BR', currencyFormat).format(values.results.currencies.USD.buy);
+          await Telegram.sendMessage(chat.id, `Dólar:\nR$ ${value}`);
+          break;
       }
 
       return res.json({ success: true });

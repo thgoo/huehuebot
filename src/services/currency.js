@@ -7,4 +7,10 @@ export default class Currency {
 
     return data;
   }
+
+  static async getEthBrl() {
+    const { data } = await Axios.get('https://www.mercadobitcoin.net/api/ETH/ticker');
+
+    return data;
+  }
 }
