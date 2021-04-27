@@ -33,13 +33,13 @@ export default class TelegramController {
         case '/eth':
         case '/etherium@TheHUEHUE_bot':
           const ethValues = await Currency.getEthBrl();
-          const valueBrl = new Intl
+          const ethBrl = new Intl
             .NumberFormat('pt-BR', currencyFormat)
             .format(ethValues.ticker.last);
-          const valueUsd = new Intl
+          const ethUsd = new Intl
             .NumberFormat('pt-BR', currencyFormat)
             .format(ethValues.results.etherium.coinbase.last / values.results.currencies.USD.buy);
-          await Telegram.sendMessage(chat.id, `Ethereum:\nR$ ${valueBrl}\nUS$ ${valueUsd}`);
+          await Telegram.sendMessage(chat.id, `Ethereum:\nR$ ${ethBrl}\nUS$ ${ethUsd}`);
           break;
         case '/dolar':
         case '/dolar@TheHUEHUE_bot':
