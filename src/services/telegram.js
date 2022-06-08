@@ -12,17 +12,14 @@ export default class Telegram {
   }
 
   static isBotCommand(entities) {
-    let isBotCommand = false;
-
     if (entities) {
       for (let i = 0; i < entities.length; i += 1) {
         if (entities[i].type === 'bot_command') {
-          isBotCommand = true;
-          break;
+          return true;
         }
       }
     }
 
-    return isBotCommand;
+    return false;
   }
 }
