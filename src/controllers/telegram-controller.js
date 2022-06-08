@@ -18,9 +18,9 @@ export default class TelegramController {
 
       // handle bot command
       switch (text) {
-        case '/bitcoin':
         case '/btc':
-        case '/bitcoin@TheHUEHUE_bot':
+        case '/bitcoin':
+        case '/bitcoin@TheHUEHUE_bot': {
           const valueBrl = new Intl
             .NumberFormat('pt-BR', currencyFormat)
             .format(values.results.bitcoin.mercadobitcoin.last);
@@ -29,9 +29,10 @@ export default class TelegramController {
             .format(values.results.bitcoin.coinbase.last);
           await Telegram.sendMessage(chat.id, `Bitcoin:\nR$ ${valueBrl}\nUS$ ${valueUsd}`);
           break;
-        case '/ethereum':
+        }
         case '/eth':
-        case '/ethereum@TheHUEHUE_bot':
+        case '/ethereum':
+        case '/ethereum@TheHUEHUE_bot': {
           const ethValues = await Currency.getEthBrl();
           const ethBrl = new Intl
             .NumberFormat('pt-BR', currencyFormat)
@@ -41,11 +42,28 @@ export default class TelegramController {
             .format(ethValues.ticker.last / values.results.currencies.USD.buy);
           await Telegram.sendMessage(chat.id, `Ethereum:\nR$ ${ethBrl}\nUS$ ${ethUsd}`);
           break;
-        case '/dolar':
-        case '/dolar@TheHUEHUE_bot':
+        }
+        case '/cad':
+        case '/canadian-dollar':
+        case '/canadian-dollar@TheHUEHUE_bot': {
+          const value = new Intl.NumberFormat('pt-BR', currencyFormat).format(values.results.currencies.CAD.buy);
+          await Telegram.sendMessage(chat.id, `Dólar canadense:\nR$ ${value}`);
+          break;
+        }
+        case '/eur':
+        case '/euro':
+        case '/euro@TheHUEHUE_bot': {
+          const value = new Intl.NumberFormat('pt-BR', currencyFormat).format(values.results.currencies.EUR.buy);
+          await Telegram.sendMessage(chat.id, `Euro:\nR$ ${value}`);
+          break;
+        }
+        case '/usd':
+        case '/dollar':
+        case '/dollar@TheHUEHUE_bot': {
           const value = new Intl.NumberFormat('pt-BR', currencyFormat).format(values.results.currencies.USD.buy);
           await Telegram.sendMessage(chat.id, `Dólar:\nR$ ${value}`);
           break;
+        }
       }
 
       return res.json({ success: true });

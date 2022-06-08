@@ -1,0 +1,23 @@
+{
+  "parser": "@babel/eslint-parser",
+  "extends": "eslint:recommended",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    // syntax
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-shadow": ["warn", { "builtinGlobals": false, "hoist": "functions", "allow": [] }]
+  }
+  // "parserOptions": {
+  //   "sourceType": "module",
+  //   "allowImportExportEverywhere": false,
+  //   "ecmaFeatures": {
+  //     "globalReturn": false
+  //   }
+  // }
+}
