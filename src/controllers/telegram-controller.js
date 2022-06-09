@@ -20,7 +20,7 @@ export default class TelegramController {
       switch (text) {
         case '/btc':
         case '/bitcoin':
-        case '/bitcoin@TheHUEHUE_bot': {
+        case '/btc@TheHUEHUE_bot': {
           const valueBrl = new Intl
             .NumberFormat('pt-BR', currencyFormat)
             .format(values.results.bitcoin.mercadobitcoin.last);
@@ -32,7 +32,7 @@ export default class TelegramController {
         }
         case '/eth':
         case '/ethereum':
-        case '/ethereum@TheHUEHUE_bot': {
+        case '/eth@TheHUEHUE_bot': {
           const ethValues = await Currency.getEthBrl();
           const ethBrl = new Intl
             .NumberFormat('pt-BR', currencyFormat)
@@ -45,21 +45,21 @@ export default class TelegramController {
         }
         case '/cad':
         case '/canadian-dollar':
-        case '/canadian-dollar@TheHUEHUE_bot': {
+        case '/cad@TheHUEHUE_bot': {
           const value = new Intl.NumberFormat('pt-BR', currencyFormat).format(values.results.currencies.CAD.buy);
           await Telegram.sendMessage(chat.id, `Dólar canadense:\nR$ ${value}`);
           break;
         }
         case '/eur':
         case '/euro':
-        case '/euro@TheHUEHUE_bot': {
+        case '/eur@TheHUEHUE_bot': {
           const value = new Intl.NumberFormat('pt-BR', currencyFormat).format(values.results.currencies.EUR.buy);
           await Telegram.sendMessage(chat.id, `Euro:\nR$ ${value}`);
           break;
         }
         case '/usd':
         case '/dollar':
-        case '/dollar@TheHUEHUE_bot': {
+        case '/usd@TheHUEHUE_bot': {
           const value = new Intl.NumberFormat('pt-BR', currencyFormat).format(values.results.currencies.USD.buy);
           await Telegram.sendMessage(chat.id, `Dólar:\nR$ ${value}`);
           break;
