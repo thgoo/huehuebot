@@ -3,7 +3,7 @@
     "axios": "^0.21.2",
     "dotenv": "^8.0.0",
     "esm": "^3.2.25",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "intl": "^1.2.5",
     "json-stringify-safe": "^5.0.1",
     "winston": "^3.2.1"
