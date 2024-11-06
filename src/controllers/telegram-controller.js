@@ -26,7 +26,7 @@ export default class TelegramController {
             .format(values.results.bitcoin.mercadobitcoin.last);
           const valueUsd = new Intl
             .NumberFormat('pt-BR', currencyFormat)
-            .format(values.results.bitcoin.coinbase.last);
+            .format(values.results.bitcoin.blockchain_info.last);
           await Telegram.sendMessage(chat.id, `Bitcoin:\nR$ ${valueBrl}\nUS$ ${valueUsd}`);
           break;
         }
